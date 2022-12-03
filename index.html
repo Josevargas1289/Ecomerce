@@ -1,15 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academlo Store</title>
-</head>
-<body>
 
-    <!--========== Logo Academlo con contorno ==========-->
-    <!-- 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academlo Store</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <header>
+    <nav class="nav-bar">
+      <div class="container-logo-title">
+
+        <svg class="nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
+          <title>Academlo Logo</title>
+          <g>
+            <g>
+              <path
+                d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+              </path>
+            </g>
+          </g>
+        </svg>
+        <h4>Store</h4>
+
+      </div>
+
+      <div class="icons-wrappers">
+        <i class='bx bx-sun bx-sm' id="theme-btn"></i>
+
+        <div class="cart-shop" id="cart-btn">
+          <i class='bx bxs-shopping-bag bx-sm'></i>
+          <span class="cart-counter" id="cart-counter">0</span>
+        </div>
+
+        <i class='bx bx-grid-alt bx-sm' id="menu-btn"></i>
+      </div>
+
+    </nav>
+
+  </header>
+  <main>
+    <section class="section-header">
+      <h2 class="title">New Sweatshirt
+        COLLECTIONS 2022</h2>
+      <p class="text">
+        Latest arrival of the new Hanes Midweight Crewneck sweatshirt imported from the 2022 series, with a modern
+        design.
+      </p>
+    </section>
+  </main>
+
+  <!-- bolsa de compras -->
+  <div class="cart-container hiden" id="cart-container">
+    <div class="cart" id="cart">
+      <div class="cart-close" id="close-cart">
+
+        <i class='bx bx-x bx-md'></i>
+
+      </div>
+      <!-- contenido del carrito -->
+
+    </div>
+
+
+  </div>
+
+  <div class="menu-container hiden" id="menu-container">
+    <div class="menu" id="menu">
+      <div class="menu-close" id="close-menu">
+
+        <i class='bx bx-x bx-md'></i>
+
+      </div>
+      <!-- contenido del menu -->
+
+    </div>
+
+
+  </div>
+
+  <!-- menu -->
+
+  
+
+
+
+  <!--========== Logo Academlo con contorno ==========-->
+  <!-- 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
         <title>Academlo Logo</title>
         <g>
@@ -25,8 +106,8 @@
     </svg>
     -->
 
-    <!--=========== Logo Academlo sin contorno ==========-->
-    <!--
+  <!--=========== Logo Academlo sin contorno ==========-->
+  <!--
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
         <title>Academlo Logo</title>
         <g>
@@ -38,5 +119,8 @@
         </g>
     </svg>
     -->
+
+  <script src="./assets/js/main.js"></script>
 </body>
+
 </html>
