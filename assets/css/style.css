@@ -147,6 +147,7 @@ main{
 
 .container-routes{
   display: flex;
+  margin-bottom: 5rem;
   
 }
 .discover{
@@ -271,4 +272,147 @@ main{
   position: absolute;
   top: 1rem;
   right: 1.5rem;
+}
+
+.options{
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "Show-all hoddies ."
+    "Shirts sweatshirt ."
+    ". . ."; 
+    gap: 1rem 4rem;
+    margin-left: 1.2rem;
+    font-size: 0.8rem;
+}
+
+.showAll { 
+  grid-area: Show-all;
+  width: 110px;
+  padding-left: 10px;
+  border-right: solid ;
+
+ }
+.hoodies { 
+  grid-area: hoddies; 
+  width: 110px;
+  padding-left: 10px;
+  border-right: solid ;
+}
+.shirts { 
+  grid-area: Shirts;
+  width: 110px;
+  padding-left: 10px;
+  border-right: solid ;
+ }
+.sweatsshirts {
+  grid-area: sweatshirt; 
+}
+
+.containers-products{
+  position: relative;
+  margin-bottom: 5rem;
+  z-index: -1;
+}
+.productsStore{
+  background-color: var(--text-color);
+  border-radius: 20px ;
+  margin-bottom: 5rem;
+ 
+}
+.infoproduct{
+  background-color: #fff;
+  margin-bottom: -1.5rem;
+  width: 100%;
+  height: 90px;
+  border-radius: 0 0 20px 20px;
+  font-size: 1rem;
+  position: relative;
+  
+}
+.addMas{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: var(--border-color);
+  border-radius: 50%;
+  left: 80%;
+  bottom: 4.5%;
+
+}
+
+
+.addMas >h3{
+  font-size: 1.2rem;
+  
+}
+.ifp{
+  position: absolute;
+  gap: 0.25rem;
+  margin: 1rem 0 0 2rem ;
+  display: flex;
+
+}
+.ifp > h4{
+  width: 80px;
+  
+  border-right: solid
+}
+
+.ifp >h3{
+  position: absolute;
+  top: 1.5rem;
+}
+
+.contenedor-footer{
+  background-color: var(--border-color);
+  width: 100%;
+  height: 100%;
+  color: var(--button-color-alt);
+
+}
+
+.general-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  
+
+}
+
+.bio{
+  background-color: var(--border-color);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.social{
+  
+  height: 100px;
+ 
+}
+
+.logosredes{
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  gap: 1rem;
+
+}
+
+.logito{
+  width: 30px;
+  height: 30px;
 }
