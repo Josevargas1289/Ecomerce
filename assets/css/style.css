@@ -65,6 +65,8 @@ img{
 }
 .nav-bar{
   display: flex;
+  position: fixed;
+  width: 100%;
   padding: 1rem 1rem;
   justify-content: space-between;
   align-items: center;
@@ -99,18 +101,73 @@ img{
   color: var(--title-color);
 }
 
+.container-imgHome{
+  display: flex;
+  justify-content: end;
+  height: 22rem;
+  
+}
+
+.imgHome{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 12.5rem;
+  height: 100%;
+  background-color: var(--first-color);
+}
+
+.imgHome > img{
+  margin-top: 6.5rem;
+  width: 15rem;
+  height: 13rem;
+}
+
 main{
   padding: 1.5rem;
+  
 }
 .title{
   padding: 0 0 1.5rem 0rem;
   color: var(--title-color);
   font-weight: bold;
+  
 
 }
 
 .section-header{
+  margin-top: -1rem;
   padding: 1rem 1.5rem;
+ 
+}
+
+.price{
+  color: var(--first-color);
+}
+
+.container-routes{
+  display: flex;
+  
+}
+.discover{
+  width: 120px;
+  height: 60px;
+  margin-top: 5px;
+  background-color: var(--card-color);
+  color:  var(--button-color-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addtocart{
+  background-color: var(--button-color-alt);
+  width: 160px;
+  height: 70px;
+  color: var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-container{
@@ -123,6 +180,8 @@ main{
   z-index: 50;
   transition: left .3s linear;
   padding: 2.5rem 1.5rem 1rem 1.5rem;
+
+  
 
 }
 
