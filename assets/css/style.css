@@ -424,6 +424,16 @@ main {
 }
 
 
+  
+.img-p:hover{
+position: relative;
+transform: translateY(-2px);
+transition:  200ms linear;
+
+
+}
+
+
 
 
 /* /aqui inicia el footer  */
