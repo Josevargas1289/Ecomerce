@@ -25,6 +25,9 @@ const items = [
     }
   ]
 
+  // declaracion de variables
+
+
   const body = document.body
   const btnTheme  = document.getElementById('theme-btn') 
 
@@ -36,16 +39,20 @@ const items = [
   const menuBtnClose = document.getElementById('close-menu')
   const menuContainer  =document.getElementById('menu-container')
 
+  const navBarScroller = document.getElementById('navBar');
+
+  
 
 
+// funcion botones de cerrar y abrir
 
   const darkThemChange = () =>{
    
-      if(btnTheme.classList.contains('bx-sun')){
-        btnTheme.classList.replace('bx-sun', 'bx-moon')
+      if(btnTheme.classList.contains('bx-moon')){
+        btnTheme.classList.replace('bx-moon', 'bx-sun')
 
       }else{
-        btnTheme.classList.replace('bx-moon', 'bx-sun')
+        btnTheme.classList.replace('bx-sun', 'bx-moon')
         
       }
       body.classList.toggle('dark')
@@ -55,15 +62,35 @@ const items = [
 
 
 // funcionalidad boton-cart
+
   cartBtnOpen.addEventListener('click', e => cartContainer.classList.remove('hiden')) 
 
   cartBtnClose.addEventListener('click', e => cartContainer.classList.add('hiden'))
 
 // funcionalidad boton menu
+
 menuBtn .addEventListener('click', e => menuContainer.classList.remove('hiden')) 
 
-menuBtnClose.addEventListener('click', e => menuContainer .classList.add('hiden'))
+menuBtnClose.addEventListener('click', e => menuContainer.classList.add('hiden'))
 
 
+// agregando color a la barra de navegacion sise detecta un scroll
 
+
+let lastscroll = 0;
+ window.addEventListener('scroll', () =>{
+  const  currentScroll = window.pageYOffset
+  lastscroll = currentScroll;
+  if(lastscroll <= 10 ){
+    navBarScroller.classList.remove('scroller-nav')
+
+  }else{
+    navBarScroller.classList.add('scroller-nav')
+
+  }
   
+ })
+
+ const colorbarraLateralScroll = () =>{
+  
+ }
