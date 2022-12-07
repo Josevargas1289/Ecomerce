@@ -41,6 +41,17 @@ const items = [
 
   const navBarScroller = document.getElementById('navBar');
 
+
+  const btnMenuHome = document.getElementById('menu-home')
+  const btnMenuProducts = document.getElementById('menu-products')
+
+
+  btnMenuHome .addEventListener('click', e => menuContainer.classList.add('hiden')) 
+  btnMenuProducts .addEventListener('click', e => menuContainer.classList.add('hiden')) 
+
+
+
+
   
 
 
