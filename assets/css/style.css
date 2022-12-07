@@ -566,7 +566,7 @@ transition:  200ms linear;
 
   }
   50%{
-      top: -100px;
+      top: -10px;
       
   }
   100%{
