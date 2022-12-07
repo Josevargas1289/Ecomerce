@@ -42,6 +42,7 @@ const btnMenuHome = document.getElementById('menu-home');
 const btnMenuProducts = document.getElementById('menu-products');
 
 const navBarScroller = document.getElementById('navBar');
+const loader = document.getElementById('loader');
 
 const btnAddProducts = document.querySelectorAll('.btn-add-producs');
 const cartItemsHolder = document.querySelector('.cart-items');
@@ -104,8 +105,6 @@ window.addEventListener('scroll', () => colorbarraLateralScroll());
 //  animacion loader
 
 const loadComponent = () => {
-  const loader = document.getElementById('loader');
-
   setTimeout(() => {
     loader.classList.add('hide');
   }, 3000);
