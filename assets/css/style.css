@@ -93,6 +93,11 @@ img {
   z-index: 30;
 
 }
+.container-nav-bar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 .text {
   font-size: 15px;
@@ -278,6 +283,13 @@ img {
 
 }
 
+.container-aside{
+  
+  display: flex;
+  flex-direction: row-reverse;
+  
+}
+
 .imgHome {
   display: flex;
   justify-content: end;
@@ -308,13 +320,17 @@ main {
 }
 
 .section-header {
-  margin-top: -1rem;
+ 
+  width: 300px;
+  margin-top: 2rem;
   padding: 1rem 1.5rem;
 
 }
 
 .price {
   color: var(--first-color);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .container-routes {
@@ -328,7 +344,6 @@ main {
   width: 120px;
   height: 60px;
   margin-top: 5px;
-  margin-left: 1rem;
   background-color: var(--text-color-light);
   color: var(--button-color-alt);
   display: flex;
@@ -508,6 +523,8 @@ transition:  200ms linear;
   align-items: center;
   text-align: center;
   padding: 3rem;
+  background-color: var(--card-color);
+
  
 }
 

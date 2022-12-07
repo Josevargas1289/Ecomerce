@@ -1,0 +1,153 @@
+@media screen and (min-width: 678px) {
+
+    .container-nav-bar {
+        width: 75%;
+        margin-left: 10rem;
+
+    }
+
+    .container-aside {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-left: 10rem;
+        margin-right: 10rem;
+        height: 600px;
+
+    }
+
+ 
+
+
+
+    .imgHome {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+        width: 30rem;
+        height: 600px;
+        background-color: var(--first-color);
+    }
+
+    .imgHome img {
+        width: 30rem;
+        height: 500px;
+
+    }
+
+    .section-header {
+      
+        position: absolute;
+        top: 0;
+        margin-top: 10rem;
+        margin-left: 9rem;
+        padding-right: .5rem;
+        width: 40%;
+
+    }
+
+    .section-header>h2 {
+        font-size: 50px;
+
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .options {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+
+    }
+
+    .container-options {
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        gap: 8rem;
+        margin-top: 5rem;
+
+    }
+
+    .Text-options {
+        font-size: 20px;
+    }
+
+    .Text-options-fin {
+        font-size: 20px;
+    }
+
+    .producctos-all {
+        
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        padding: 1rem;
+
+    }
+
+    .products{
+     
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        padding: 2rem;
+
+    }
+    .contenedor-footer{
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+      
+    }
+
+    .general-info{
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        line-height: 2rem;
+     
+
+
+    }
+    .logosredes{
+        display: flex;
+        justify-content: center;
+    
+    }
+    .social{
+        width: 140px;
+        text-align: center;
+    }
+    .menu-container-tarjet{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        position: fixed;
+        left: 21rem;
+        top: 2.2rem;
+        transition: all linear .3s;
+       
+    }
+
+    .menu-container-tarjet a{
+        font-size: 15px;
+    }
+
+    #menu-btn{
+        display: none;
+    }
+
+    
+}
