@@ -46,6 +46,11 @@ const items = [
   const btnMenuProducts = document.getElementById('menu-products')
 
 
+  const loader = document.getElementById( "loader" )
+
+  
+
+
   btnMenuHome .addEventListener('click', e => menuContainer.classList.add('hiden')) 
   btnMenuProducts .addEventListener('click', e => menuContainer.classList.add('hiden')) 
 
@@ -108,7 +113,7 @@ let lastscroll = 0;
 
 
 const loadComponent = () => {
-  const loader = document.getElementById( "loader" )
+  
 
  setTimeout( () => { 
      loader.classList.add( "hide" )
