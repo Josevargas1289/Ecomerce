@@ -44,6 +44,7 @@ const btnMenuProducts = document.getElementById('menu-products');
 const navBarScroller = document.getElementById('navBar');
 
 const btnAddProducts = document.querySelectorAll('.btn-add-producs');
+const cartItemsHolder = document.querySelector('.cart-items');
 
 ///////////////////////////////////////////////////////////
 // funcion para pasar a modo oscuro y vice versa
@@ -100,15 +101,34 @@ const colorbarraLateralScroll = () => {
 window.addEventListener('scroll', () => colorbarraLateralScroll());
 
 ///////////////////////////////////////////////////////////
+//  animacion loader
+
+const loadComponent = () => {
+  const loader = document.getElementById('loader');
+
+  setTimeout(() => {
+    loader.classList.add('hide');
+  }, 3000);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadComponent();
+});
+
+///////////////////////////////////////////////////////////
 // funcionalidad llenar carrito
 const cart = [];
 
+// Funcionalidad para agregar item clickeado en el objeto cart
 btnAddProducts.forEach(el => {
+  // agrego un eventListener a cada boton +
   el.addEventListener('click', e => {
-    const { prod } = e.target.dataset;
-    console.log(prod);
-    const item = items.find(el => el.id === +prod);
+    //identificamos el producto seleccionado
+    const { id } = e.target.dataset;
+    const item = items.find(el => el.id === +id);
+    // reducimos la cantidad del stock
     item.quantity--;
+    // si el item no está en el carrito, lo agregamos
     if (!cart.find(el => el.id === item.id)) {
       cart.push({
         id: item.id,
@@ -120,15 +140,27 @@ btnAddProducts.forEach(el => {
         stock: item.quantity,
       });
     } else {
+      // Si el item si está en el carrito, aumentamos la cantidad en +1
       cart.forEach(el => {
         if (el.id === item.id) {
           el.cartQuantity++;
-          item.quantity--;
           el.stock = item.quantity;
         }
       });
     }
     console.log(cart);
     console.log(items);
+    cartItemsHolder.innerHTML = '<span></span>';
+    cart.forEach(el =>
+      cartItemsHolder.firstElementChild.insertAdjacentHTML(
+        'afterend',
+        generateMarkup(el)
+      )
+    );
   });
 });
+
+const generateMarkup = function (data) {
+  const subtotalItem = data.price * data.cartQuantity;
+  return `<article class='cart__card'><div class='cart__box'><img src='${data.image}' alt='${data.name}' class='cart__img'></div><div class='cart__details'><h3 class='cart__title'>${data.name}</h3><span class='cart__stock'>Stock: ${data.stock} | <span class='cart__price'>$ ${data.price}</span></span><span class='cart__subtotal'>Subtotal: $ ${subtotalItem}</span><div class='cart__amount'><div class='cart__amount-content'><span class='cart__amount-box minus' data-id='2'><i class='bx bx-minus'></i></span><span class='cart__amount-number'>${data.cartQuantity} units</span><span class='cart__amount-box plus' data-id='2'><i class='bx bx-plus'></i></span></div><i class='bx bx-trash-alt cart__amount-trash' data-id='2'></i></div></div></article>`;
+};
