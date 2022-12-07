@@ -102,6 +102,24 @@ let lastscroll = 0;
   
  })
 
- const colorbarraLateralScroll = () =>{
-  
- }
+ 
+
+//  animacion loader
+
+
+const loadComponent = () => {
+  const loader = document.getElementById( "loader" )
+
+ setTimeout( () => { 
+     loader.classList.add( "hide" )
+  }, 3000 )
+}
+
+document.addEventListener( "DOMContentLoaded", ( ) => {
+ 
+
+  loadComponent()
+})
+
+
+
