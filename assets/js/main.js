@@ -118,6 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // funcionalidad llenar carrito
 const cart = [];
 
+const renderCart = function () {
+  cartItemsHolder.innerHTML = '<span></span>';
+  cart.forEach(el =>
+    cartItemsHolder.firstElementChild.insertAdjacentHTML(
+      'afterend',
+      generateMarkup(el)
+    )
+  );
+};
+
+const generateMarkup = function (data) {
+  const subtotalItem = data.price * data.cartQuantity;
+  return `<article class='cart__card'><div class='cart__box'><img src='${data.image}' alt='${data.name}' class='cart__img'></div><div class='cart__details'><h3 class='cart__title'>${data.name}</h3><span class='cart__stock'>Stock: ${data.stock} | <span class='cart__price'>$ ${data.price}</span></span><span class='cart__subtotal'>Subtotal: $ ${subtotalItem}</span><div class='cart__amount'><div class='cart__amount-content'><span class='cart__amount-box minus' data-id='${data.id}'><i class='bx bx-minus'></i></span><span class='cart__amount-number'>${data.cartQuantity} units</span><span class='cart__amount-box plus' data-id='${data.id}'><i class='bx bx-plus'></i></span></div><i class='bx bx-trash-alt cart__amount-trash' data-id='${data.id}'></i></div></div></article>`;
+};
+
 // Funcionalidad para agregar item clickeado en el objeto cart
 btnAddProducts.forEach(el => {
   // agrego un eventListener a cada boton +
@@ -147,19 +162,42 @@ btnAddProducts.forEach(el => {
         }
       });
     }
-    console.log(cart);
-    console.log(items);
-    cartItemsHolder.innerHTML = '<span></span>';
-    cart.forEach(el =>
-      cartItemsHolder.firstElementChild.insertAdjacentHTML(
-        'afterend',
-        generateMarkup(el)
-      )
-    );
+    renderCart();
   });
 });
 
-const generateMarkup = function (data) {
-  const subtotalItem = data.price * data.cartQuantity;
-  return `<article class='cart__card'><div class='cart__box'><img src='${data.image}' alt='${data.name}' class='cart__img'></div><div class='cart__details'><h3 class='cart__title'>${data.name}</h3><span class='cart__stock'>Stock: ${data.stock} | <span class='cart__price'>$ ${data.price}</span></span><span class='cart__subtotal'>Subtotal: $ ${subtotalItem}</span><div class='cart__amount'><div class='cart__amount-content'><span class='cart__amount-box minus' data-id='2'><i class='bx bx-minus'></i></span><span class='cart__amount-number'>${data.cartQuantity} units</span><span class='cart__amount-box plus' data-id='2'><i class='bx bx-plus'></i></span></div><i class='bx bx-trash-alt cart__amount-trash' data-id='2'></i></div></div></article>`;
-};
+///////////////////////////////////////////////////////////
+// funcionalidad botones editar carrito
+
+const minusItems = document.querySelectorAll('.minus');
+const plusItems = document.querySelectorAll('.plus');
+const deleteButtons = document.querySelectorAll('.cart__amount-trash');
+const totalContainer = document.getElementById('cart-total');
+const checkoutButton = document.getElementById('cart-checkout');
+
+minusItems.forEach(el => {
+  el.addEventListener('click', e => {
+    const { id } = e.target.dataset;
+    const cartItem = cart.find(item => item.id === id);
+    if (cartItem.cartQuantity > 1) {
+      cartItem.cartQuantity--;
+    }
+    renderCart();
+  });
+});
+
+plusItems.forEach(el => {
+  el.addEventListener('click', e => {
+    const { id } = e.target.dataset;
+
+    renderCart();
+  });
+});
+
+deleteButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    const { id } = e.target.dataset;
+
+    renderCart();
+  });
+});
