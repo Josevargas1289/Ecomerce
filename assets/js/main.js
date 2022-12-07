@@ -20,7 +20,7 @@ const items = [
     name: 'Sweatshirts',
     price: 24.0,
     image: 'assets/images/featured3.png',
-    category: 'shirts',
+    category: 'sweatshirts',
     quantity: 20,
   },
 ];
@@ -43,7 +43,7 @@ const btnMenuProducts = document.getElementById('menu-products');
 
 const navBarScroller = document.getElementById('navBar');
 
-const btnAddProducts = document.querySelectorAll('btn-add-producs');
+const btnAddProducts = document.querySelectorAll('.btn-add-producs');
 
 ///////////////////////////////////////////////////////////
 // funcion para pasar a modo oscuro y vice versa
@@ -101,6 +101,34 @@ window.addEventListener('scroll', () => colorbarraLateralScroll());
 
 ///////////////////////////////////////////////////////////
 // funcionalidad llenar carrito
+const cart = [];
+
 btnAddProducts.forEach(el => {
-  el.addEventListener();
+  el.addEventListener('click', e => {
+    const { prod } = e.target.dataset;
+    console.log(prod);
+    const item = items.find(el => el.id === +prod);
+    item.quantity--;
+    if (!cart.find(el => el.id === item.id)) {
+      cart.push({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        category: item.category,
+        cartQuantity: 1,
+        stock: item.quantity,
+      });
+    } else {
+      cart.forEach(el => {
+        if (el.id === item.id) {
+          el.cartQuantity++;
+          item.quantity--;
+          el.stock = item.quantity;
+        }
+      });
+    }
+    console.log(cart);
+    console.log(items);
+  });
 });
