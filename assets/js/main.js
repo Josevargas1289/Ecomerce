@@ -215,8 +215,11 @@ document.addEventListener('click', e => {
   }
   if (el.classList.contains('cart__amount-trash')) {
     const { id } = el.dataset;
-    const cartItem = cart.find(item => item.id === +id);
-    cart.splice(cartItem, 1);
+    cart.forEach((item, index) => {
+      if (item.id === +id) {
+        cart.splice(index, 1);
+      }
+    });
     // guardar datos del carrito en la memorio local
     window.localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
