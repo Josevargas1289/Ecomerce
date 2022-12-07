@@ -1,125 +1,134 @@
 const items = [
-    {
-      id: 1,
-      name: 'Hoodies',
-      price: 14.00,
-      image: 'assets/images/featured1.png',
-      category: 'hoodies',
-      quantity: 10
-    },
-    {
-      id: 2,
-      name: 'Shirts',
-      price: 24.00,
-      image: 'assets/images/featured2.png',
-      category: 'shirts',
-      quantity: 15
-    },
-    {
-      id: 3,
-      name: 'Sweatshirts',
-      price: 24.00,
-      image: 'assets/images/featured3.png',
-      category: 'shirts',
-      quantity: 20
-    }
-  ]
+  {
+    id: 1,
+    name: 'Hoodies',
+    price: 14.0,
+    image: 'assets/images/featured1.png',
+    category: 'hoodies',
+    quantity: 10,
+  },
+  {
+    id: 2,
+    name: 'Shirts',
+    price: 24.0,
+    image: 'assets/images/featured2.png',
+    category: 'shirts',
+    quantity: 15,
+  },
+  {
+    id: 3,
+    name: 'Sweatshirts',
+    price: 24.0,
+    image: 'assets/images/featured3.png',
+    category: 'sweatshirts',
+    quantity: 20,
+  },
+];
 
-  // declaracion de variables
+///////////////////////////////////////////////////////////
+// declaracion de variables
+const body = document.body;
+const btnTheme = document.getElementById('theme-btn');
 
+const cartBtnOpen = document.getElementById('cart-btn');
+const cartBtnClose = document.getElementById('close-cart');
+const cartContainer = document.getElementById('cart-container');
 
-  const body = document.body
-  const btnTheme  = document.getElementById('theme-btn') 
+const menuBtn = document.getElementById('menu-btn');
+const menuBtnClose = document.getElementById('close-menu');
+const menuContainer = document.getElementById('menu-container');
 
-  const cartBtnOpen = document.getElementById('cart-btn')
-  const cartBtnClose = document.getElementById('close-cart')
-  const cartContainer  =document.getElementById('cart-container')
+const btnMenuHome = document.getElementById('menu-home');
+const btnMenuProducts = document.getElementById('menu-products');
 
-  const menuBtn = document.getElementById('menu-btn')
-  const menuBtnClose = document.getElementById('close-menu')
-  const menuContainer  =document.getElementById('menu-container')
+const navBarScroller = document.getElementById('navBar');
 
-  const navBarScroller = document.getElementById('navBar');
+const btnAddProducts = document.querySelectorAll('.btn-add-producs');
 
-
-  const btnMenuHome = document.getElementById('menu-home')
-  const btnMenuProducts = document.getElementById('menu-products')
-
-
-  btnMenuHome .addEventListener('click', e => menuContainer.classList.add('hiden')) 
-  btnMenuProducts .addEventListener('click', e => menuContainer.classList.add('hiden')) 
-
-
-
-
-  
-
-
-// funcion botones de cerrar y abrir
-
-  const darkThemChange = () =>{
-   
-      if(btnTheme.classList.contains('bx-moon')){
-        btnTheme.classList.replace('bx-moon', 'bx-sun')
-
-      }else{
-        btnTheme.classList.replace('bx-sun', 'bx-moon')
-        
-      }
-      body.classList.toggle('dark')
-         
+///////////////////////////////////////////////////////////
+// funcion para pasar a modo oscuro y vice versa
+const darkThemChange = () => {
+  if (btnTheme.classList.contains('bx-moon')) {
+    btnTheme.classList.replace('bx-moon', 'bx-sun');
+  } else {
+    btnTheme.classList.replace('bx-sun', 'bx-moon');
   }
-  btnTheme.addEventListener('click', e => darkThemChange())
+  body.classList.toggle('dark');
+};
+btnTheme.addEventListener('click', e => darkThemChange());
 
+///////////////////////////////////////////////////////////
+// funcionalidad abrir y cerrar carrito
+cartBtnOpen.addEventListener('click', e =>
+  cartContainer.classList.remove('hiden')
+);
 
-// funcionalidad boton-cart
+cartBtnClose.addEventListener('click', e =>
+  cartContainer.classList.add('hiden')
+);
 
-  cartBtnOpen.addEventListener('click', e => cartContainer.classList.remove('hiden')) 
+///////////////////////////////////////////////////////////
+// funcionalidad abrir y cerrar menu
+menuBtn.addEventListener('click', e => menuContainer.classList.remove('hiden'));
 
-  cartBtnClose.addEventListener('click', e => cartContainer.classList.add('hiden'))
+menuBtnClose.addEventListener('click', e =>
+  menuContainer.classList.add('hiden')
+);
 
-// funcionalidad boton menu
+///////////////////////////////////////////////////////////
+// funcionalidad cerrar menu al dar click en un enlace
+btnMenuHome.addEventListener('click', e =>
+  menuContainer.classList.add('hiden')
+);
+btnMenuProducts.addEventListener('click', e =>
+  menuContainer.classList.add('hiden')
+);
 
-menuBtn .addEventListener('click', e => menuContainer.classList.remove('hiden')) 
-
-menuBtnClose.addEventListener('click', e => menuContainer.classList.add('hiden'))
-
-
-// agregando color a la barra de navegacion sise detecta un scroll
-
-
+///////////////////////////////////////////////////////////
+// funcion para dar color a la barra de navegacion si se detecta un scroll
 let lastscroll = 0;
- window.addEventListener('scroll', () =>{
-  const  currentScroll = window.pageYOffset
+const colorbarraLateralScroll = () => {
+  const currentScroll = window.pageYOffset;
   lastscroll = currentScroll;
-  if(lastscroll <= 10 ){
-    navBarScroller.classList.remove('scroller-nav')
-
-  }else{
-    navBarScroller.classList.add('scroller-nav')
-
+  if (lastscroll <= 10) {
+    navBarScroller.classList.remove('scroller-nav');
+  } else {
+    navBarScroller.classList.add('scroller-nav');
   }
-  
- })
+};
 
- 
+window.addEventListener('scroll', () => colorbarraLateralScroll());
 
-//  animacion loader
+///////////////////////////////////////////////////////////
+// funcionalidad llenar carrito
+const cart = [];
 
-
-const loadComponent = () => {
-  const loader = document.getElementById( "loader" )
-
- setTimeout( () => { 
-     loader.classList.add( "hide" )
-  }, 3000 )
-}
-
-document.addEventListener( "DOMContentLoaded", ( ) => {
- 
-
-  loadComponent()
-})
-
-
-
+btnAddProducts.forEach(el => {
+  el.addEventListener('click', e => {
+    const { prod } = e.target.dataset;
+    console.log(prod);
+    const item = items.find(el => el.id === +prod);
+    item.quantity--;
+    if (!cart.find(el => el.id === item.id)) {
+      cart.push({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        category: item.category,
+        cartQuantity: 1,
+        stock: item.quantity,
+      });
+    } else {
+      cart.forEach(el => {
+        if (el.id === item.id) {
+          el.cartQuantity++;
+          item.quantity--;
+          el.stock = item.quantity;
+        }
+      });
+    }
+    console.log(cart);
+    console.log(items);
+  });
+});
