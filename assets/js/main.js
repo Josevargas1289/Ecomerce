@@ -47,6 +47,10 @@ const loader = document.getElementById('loader');
 const btnAddProducts = document.querySelectorAll('.btn-add-producs');
 const cartItemsHolder = document.querySelector('.cart-items');
 
+const cartCounter = document.getElementById('cart-counter');
+const itemsCount = document.getElementById('items-count');
+const cartTotal = document.getElementById('cart-total');
+
 ///////////////////////////////////////////////////////////
 // funcion para pasar a modo oscuro y vice versa
 const darkThemChange = () => {
@@ -116,22 +120,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ///////////////////////////////////////////////////////////
 // funcionalidad llenar carrito
-const cart = [];
+let cart = [];
 
 const renderCart = function () {
+  let totalSum = 0;
+  let countItems = 0;
   cartItemsHolder.innerHTML = '<span></span>';
-  cart.forEach(el =>
+  cart.forEach(el => {
     cartItemsHolder.firstElementChild.insertAdjacentHTML(
       'afterend',
       generateMarkup(el)
-    )
-  );
+    );
+    totalSum += el.cartQuantity * el.price;
+    countItems++;
+  });
+  itemsCount.textContent = `${countItems}`;
+  cartTotal.textContent = `$ ${totalSum}`;
+  cartCounter.textContent = `${countItems}`;
 };
 
 const generateMarkup = function (data) {
   const subtotalItem = data.price * data.cartQuantity;
   return `<article class='cart__card'><div class='cart__box'><img src='${data.image}' alt='${data.name}' class='cart__img'></div><div class='cart__details'><h3 class='cart__title'>${data.name}</h3><span class='cart__stock'>Stock: ${data.stock} | <span class='cart__price'>$ ${data.price}</span></span><span class='cart__subtotal'>Subtotal: $ ${subtotalItem}</span><div class='cart__amount'><div class='cart__amount-content'><span class='cart__amount-box minus' data-id='${data.id}'><i class='bx bx-minus'></i></span><span class='cart__amount-number'>${data.cartQuantity} units</span><span class='cart__amount-box plus' data-id='${data.id}'><i class='bx bx-plus'></i></span></div><i class='bx bx-trash-alt cart__amount-trash' data-id='${data.id}'></i></div></div></article>`;
 };
+
+// mostrar carrito si está en el local storage
+const refreshCart = function () {
+  cart = JSON.parse(window.localStorage.getItem('cart'));
+  renderCart();
+};
+
+refreshCart();
 
 // Funcionalidad para agregar item clickeado en el objeto cart
 btnAddProducts.forEach(el => {
@@ -162,42 +181,44 @@ btnAddProducts.forEach(el => {
         }
       });
     }
-    renderCart();
+    // guardar datos del carrito en la memorio local
+    window.localStorage.setItem('cart', JSON.stringify(cart));
+    // display los elementos del carrito en
+    refreshCart();
   });
 });
 
 ///////////////////////////////////////////////////////////
 // funcionalidad botones editar carrito
 
-const minusItems = document.querySelectorAll('.minus');
-const plusItems = document.querySelectorAll('.plus');
-const deleteButtons = document.querySelectorAll('.cart__amount-trash');
-const totalContainer = document.getElementById('cart-total');
-const checkoutButton = document.getElementById('cart-checkout');
-
-minusItems.forEach(el => {
-  el.addEventListener('click', e => {
-    const { id } = e.target.dataset;
-    const cartItem = cart.find(item => item.id === id);
+document.addEventListener('click', e => {
+  const el = e.target;
+  if (el.classList.contains('minus')) {
+    const { id } = el.dataset;
+    const cartItem = cart.find(item => item.id === +id);
     if (cartItem.cartQuantity > 1) {
       cartItem.cartQuantity--;
     }
+    // guardar datos del carrito en la memorio local
+    window.localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
-  });
-});
-
-plusItems.forEach(el => {
-  el.addEventListener('click', e => {
-    const { id } = e.target.dataset;
-
+  }
+  if (el.classList.contains('plus')) {
+    const { id } = el.dataset;
+    const cartItem = cart.find(item => item.id === +id);
+    if (cartItem.cartQuantity > 0) {
+      cartItem.cartQuantity++;
+    }
+    // guardar datos del carrito en la memorio local
+    window.localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
-  });
-});
-
-deleteButtons.forEach(button => {
-  button.addEventListener('click', e => {
-    const { id } = e.target.dataset;
-
+  }
+  if (el.classList.contains('cart__amount-trash')) {
+    const { id } = el.dataset;
+    const cartItem = cart.find(item => item.id === +id);
+    cart.splice(cartItem, 1);
+    // guardar datos del carrito en la memorio local
+    window.localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
-  });
+  }
 });
