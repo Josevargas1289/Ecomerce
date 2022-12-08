@@ -161,7 +161,7 @@ btnAddProducts.forEach(el => {
     const { id } = e.target.dataset;
     const item = items.find(el => el.id === +id);
     // reducimos la cantidad del stock
-    item.quantity--;
+    // item.quantity--;
     // si el item no está en el carrito, lo agregamos
     if (!cart.find(el => el.id === item.id)) {
       cart.push({
