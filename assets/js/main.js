@@ -147,6 +147,7 @@ const generateMarkup = function (data) {
 // mostrar carrito si está en el local storage
 const refreshCart = function () {
   cart = JSON.parse(window.localStorage.getItem('cart'));
+  if (!cart) cart = [];
   renderCart();
 };
 
