@@ -132,7 +132,7 @@ const renderCart = function () {
       generateMarkup(el)
     );
     totalSum += el.cartQuantity * el.price;
-    countItems++;
+    countItems += el.cartQuantity;
   });
   itemsCount.textContent = `${countItems}`;
   cartTotal.textContent = `$ ${totalSum}`;
@@ -192,10 +192,14 @@ btnAddProducts.forEach(el => {
 ///////////////////////////////////////////////////////////
 // funcionalidad botones editar carrito
 
-document.addEventListener('click', e => {
+cartItemsHolder.addEventListener('click', e => {
   const el = e.target;
-  if (el.classList.contains('minus')) {
-    const { id } = el.dataset;
+  if (
+    el.classList.contains('minus') ||
+    el.parentElement.classList.contains('minus')
+  ) {
+    const id = el.dataset.id ? el.dataset.id : el.parentElement.dataset.id;
+
     const cartItem = cart.find(item => item.id === +id);
     if (cartItem.cartQuantity > 1) {
       cartItem.cartQuantity--;
@@ -204,10 +208,17 @@ document.addEventListener('click', e => {
     window.localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
   }
-  if (el.classList.contains('plus')) {
-    const { id } = el.dataset;
+  if (
+    el.classList.contains('plus') ||
+    el.parentElement.classList.contains('plus')
+  ) {
+    const id = el.dataset.id ? el.dataset.id : el.parentElement.dataset.id;
+
     const cartItem = cart.find(item => item.id === +id);
-    if (cartItem.cartQuantity > 0) {
+    if (
+      cartItem.cartQuantity > 0 &&
+      cartItem.cartQuantity + 1 <= cartItem.stock
+    ) {
       cartItem.cartQuantity++;
     }
     // guardar datos del carrito en la memorio local

@@ -165,6 +165,15 @@ img {
 
 .cart-shop {
   position: relative;
+  cursor: pointer;
+}
+
+#theme-btn {
+  cursor: pointer;
+}
+
+#menu-btn {
+  cursor: pointer;
 }
 
 .cart-counter {
@@ -390,6 +399,7 @@ main {
   padding-top: 7px;
   border-radius: 50%;
   box-shadow: -4px 5px 10px var(--card-color);
+  cursor: pointer;
 }
 
 .btn-add-producs:hover {
@@ -531,6 +541,22 @@ main {
 .cart__btn:disabled:hover {
   background-color: var(--card-color);
   color: var(--title-color);
+}
+
+.button {
+  display: inline-block;
+  border: none;
+  background-color: var(--button-color);
+  color: #fff;
+  padding: 1.25rem 2rem;
+  font-weight: var(--font-medium);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--first-color);
+  color: var(--body-color);
 }
 
 /* /aqui inicia el footer  */
